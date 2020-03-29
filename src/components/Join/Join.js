@@ -21,7 +21,7 @@ const Join = () => {
   return (
     <div className="joinOuterContainer">
       <div className="joinInnerContainer">
-        <h1 className="heading">Join</h1>
+        <h1 className="heading">Let's prattle</h1>
         <div>
           <input
             name="name"
@@ -48,8 +48,12 @@ const Join = () => {
           }
           to={`/chat?name=${credentials.name}&room=${credentials.room}`}
         >
-          <button className={"button mt-20"} type="submit">
-            Sign In
+          <button
+            className={"button mt-20"}
+            type="submit"
+            disabled={!credentials.name || !credentials.room}
+          >
+            Join
           </button>
         </Link>
       </div>

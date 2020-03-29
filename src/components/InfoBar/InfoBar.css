@@ -23,6 +23,19 @@
   margin-right: 5%;
 }
 
+.leaveRoomLink {
+  text-decoration: none;
+  color: white;
+  background: #3881ff;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.leaveRoomLink span {
+  padding-left: 0.3rem;
+}
+
 .onlineIcon {
   margin-right: 5%;
 }
