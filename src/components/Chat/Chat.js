@@ -22,6 +22,8 @@ const Chat = ({ location, history }) => {
   const [typing, setTyping] = useState(false);
   const [notifyTyping, setNotifyTyping] = useState("");
 
+  const [event, setEvent] = useState("");
+
   const endpoint = process.env.REACT_APP_SERVER_ENDPOINT;
 
   useEffect(() => {
@@ -96,9 +98,10 @@ const Chat = ({ location, history }) => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.which === 13) {
+    setEvent(event.key);
+    if (event.key === "Enter") {
       sendMessage(event);
-    } else if (event.which === 8 || event.key === 27) {
+    } else if (event.key === "Backspace" || event.key === "Escape") {
       return;
     } else {
       if (!typing) {
@@ -119,6 +122,7 @@ const Chat = ({ location, history }) => {
       <div className="container">
         <InfoBar room={room} />
         <Messages messages={messages} name={name} notifyTyping={notifyTyping} />
+        <div>{event}</div>
         {notifyTyping && (
           <div className="typingNotification">{notifyTyping}</div>
         )}
