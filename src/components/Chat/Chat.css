@@ -16,6 +16,12 @@
   width: 35%;
 }
 
+.typingNotification {
+  font-style: italic;
+  color: rgb(99, 99, 99);
+  padding: 4px;
+}
+
 @media (min-width: 320px) and (max-width: 480px) {
   .outerContainer {
     height: 100%;

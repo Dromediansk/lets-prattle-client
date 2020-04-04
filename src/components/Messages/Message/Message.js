@@ -18,17 +18,21 @@ const Message = ({ message: { user, text }, name }) => {
     <>
       {sentByCurrentUser ? (
         <div className="messageContainer justifyEnd">
-          <p className="sentText pr-10">{trimmedName}</p>
+          <span className="sentText pr-10">{trimmedName}</span>
           <div className="messageBox backgroundBlue">
-            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
+            <span className="messageText colorWhite">
+              {ReactEmoji.emojify(text)}
+            </span>
           </div>
         </div>
       ) : (
         <div className="messageContainer justifyStart">
           <div className="messageBox backgroundLight">
-            <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
+            <span className="messageText colorDark">
+              {ReactEmoji.emojify(text)}
+            </span>
           </div>
-          <p className="sentText pl-10">{user}</p>
+          <span className="sentText pl-10">{user}</span>
         </div>
       )}
     </>
