@@ -98,12 +98,12 @@ const Chat = ({ location, history }) => {
   };
 
   const handleKeyDown = (event) => {
-    setEvent(event.key);
     if (event.key === "Enter") {
       sendMessage(event);
     } else if (event.key === "Backspace" || event.key === "Escape") {
       return;
     } else {
+      setEvent(event.key);
       if (!typing) {
         setTyping(true);
         throttle(
