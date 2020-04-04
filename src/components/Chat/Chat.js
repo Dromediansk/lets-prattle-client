@@ -96,9 +96,9 @@ const Chat = ({ location, history }) => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
+    if (event.which === 13) {
       sendMessage(event);
-    } else if (event.key === "Backspace" || event.key === "Escape") {
+    } else if (event.which === 8 || event.key === 27) {
       return;
     } else {
       if (!typing) {
