@@ -13,7 +13,7 @@ const Join = () => {
   );
 
   const handleInputChange = event => {
-    const name = event.target.name;
+    const {name} = event.target;
     const newValue = event.target.value;
     setCredentials({ [name]: newValue });
   };
@@ -44,12 +44,11 @@ const Join = () => {
         </div>
         <Link
           onClick={e =>
-            (!credentials.name || !credentials.room) && e.preventDefault()
-          }
+            (!credentials.name || !credentials.room) && e.preventDefault()}
           to={`/chat?name=${credentials.name}&room=${credentials.room}`}
         >
           <button
-            className={"button mt-20"}
+            className="button mt-20"
             type="submit"
             disabled={!credentials.name || !credentials.room}
           >

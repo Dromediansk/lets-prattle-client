@@ -9,7 +9,8 @@ const TextContainer = ({ users }) => (
     <div>
       <h1>Let's prattle</h1>
       <h2>
-        Realtime Chat Application{" "}
+        Realtime Chat Application
+        {" "}
         <span role="img" aria-label="emoji">
           💬
         </span>

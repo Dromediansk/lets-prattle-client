@@ -99,18 +99,15 @@ const Chat = ({ location, history }) => {
     if (event.key === "Enter") {
       sendMessage(event);
     } else if (event.key === "Backspace" || event.key === "Escape") {
-      return;
+    } else if (!typing) {
+      setTyping(true);
+      throttle(
+        socket.emit("typing", { name, room, message: "is typing..." }),
+        9000
+      );
+      timeout = setTimeout(timeoutFunction, 10000);
     } else {
-      if (!typing) {
-        setTyping(true);
-        throttle(
-          socket.emit("typing", { name, room, message: "is typing..." }),
-          9000
-        );
-        timeout = setTimeout(timeoutFunction, 10000);
-      } else {
-        throttle(handleKeyDownNotEnter, 10000);
-      }
+      throttle(handleKeyDownNotEnter, 10000);
     }
   };
 

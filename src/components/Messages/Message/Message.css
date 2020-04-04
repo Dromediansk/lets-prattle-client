@@ -42,6 +42,10 @@
   padding-right: 10px;
 }
 
+.botAvatar {
+  width: 30px;
+}
+
 .justifyStart {
   justify-content: flex-start;
 }
@@ -58,6 +62,10 @@
 .colorDark,
 .colorDark a {
   color: #353535;
+}
+
+.smallFont {
+  font-size: 0.8rem;
 }
 
 .backgroundBlue {

@@ -4,7 +4,7 @@ import Linkify from "react-linkify";
 
 import "./Message.css";
 
-const Message = ({ message: { user, text }, name }) => {
+const Message = ({ message: { user, text, time }, name }) => {
   const [sentByCurrentUser, setSentByCurrentUser] = useState(false);
 
   const trimmedName = name.trim().toLowerCase();
@@ -15,11 +15,16 @@ const Message = ({ message: { user, text }, name }) => {
     }
   }, [user, trimmedName]);
 
+  const botImage = (
+    <img className="botAvatar" src="./botAvatar.svg" alt="bot" />
+  );
+
   return (
     <>
       {sentByCurrentUser ? (
         <div className="messageContainer justifyEnd">
           <span className="sentText pr-10">{trimmedName}</span>
+          <span className="sentText pr-10 smallFont">{time}</span>
           <div className="messageBox backgroundBlue">
             <span className="messageText colorWhite">
               <Linkify>{ReactEmoji.emojify(text)}</Linkify>
@@ -33,7 +38,10 @@ const Message = ({ message: { user, text }, name }) => {
               <Linkify>{ReactEmoji.emojify(text)}</Linkify>
             </span>
           </div>
-          <span className="sentText pl-10">{user}</span>
+          <span className="sentText pl-10">
+            {user === "BOT" ? botImage : user}
+          </span>
+          <span className="sentText pl-10 smallFont">{time}</span>
         </div>
       )}
     </>
