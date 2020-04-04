@@ -99,6 +99,7 @@ const Chat = ({ location, history }) => {
     if (event.key === "Enter") {
       sendMessage(event);
     } else if (event.key === "Backspace" || event.key === "Escape") {
+      return;
     } else if (!typing) {
       setTyping(true);
       throttle(

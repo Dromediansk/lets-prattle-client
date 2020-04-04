@@ -8,12 +8,12 @@ const Join = () => {
     (state, newState) => ({ ...state, ...newState }),
     {
       name: "",
-      room: ""
+      room: "",
     }
   );
 
-  const handleInputChange = event => {
-    const {name} = event.target;
+  const handleInputChange = (event) => {
+    const { name } = event.target;
     const newValue = event.target.value;
     setCredentials({ [name]: newValue });
   };
@@ -21,7 +21,7 @@ const Join = () => {
   return (
     <div className="joinOuterContainer">
       <div className="joinInnerContainer">
-        <h1 className="heading">Let's prattle</h1>
+        <h1 className="heading">Let&apos;s prattle</h1>
         <div>
           <input
             name="name"
@@ -29,7 +29,7 @@ const Join = () => {
             className="joinInput"
             type="text"
             value={credentials.name}
-            onChange={e => handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
           />
         </div>
         <div>
@@ -39,12 +39,13 @@ const Join = () => {
             className="joinInput mt-20"
             type="text"
             value={credentials.room}
-            onChange={e => handleInputChange(e)}
+            onChange={(e) => handleInputChange(e)}
           />
         </div>
         <Link
-          onClick={e =>
-            (!credentials.name || !credentials.room) && e.preventDefault()}
+          onClick={(e) =>
+            (!credentials.name || !credentials.room) && e.preventDefault()
+          }
           to={`/chat?name=${credentials.name}&room=${credentials.room}`}
         >
           <button
