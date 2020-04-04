@@ -22,8 +22,6 @@ const Chat = ({ location, history }) => {
   const [typing, setTyping] = useState(false);
   const [notifyTyping, setNotifyTyping] = useState("");
 
-  const [event, setEvent] = useState("");
-
   const endpoint = process.env.REACT_APP_SERVER_ENDPOINT;
 
   useEffect(() => {
@@ -103,7 +101,6 @@ const Chat = ({ location, history }) => {
     } else if (event.key === "Backspace" || event.key === "Escape") {
       return;
     } else {
-      setEvent(event.key);
       if (!typing) {
         setTyping(true);
         throttle(
@@ -122,7 +119,6 @@ const Chat = ({ location, history }) => {
       <div className="container">
         <InfoBar room={room} />
         <Messages messages={messages} name={name} notifyTyping={notifyTyping} />
-        <div>{event}</div>
         {notifyTyping && (
           <div className="typingNotification">{notifyTyping}</div>
         )}
