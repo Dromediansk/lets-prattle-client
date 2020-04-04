@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactEmoji from "react-emoji";
+import Linkify from "react-linkify";
 
 import "./Message.css";
 
@@ -21,7 +22,7 @@ const Message = ({ message: { user, text }, name }) => {
           <span className="sentText pr-10">{trimmedName}</span>
           <div className="messageBox backgroundBlue">
             <span className="messageText colorWhite">
-              {ReactEmoji.emojify(text)}
+              <Linkify>{ReactEmoji.emojify(text)}</Linkify>
             </span>
           </div>
         </div>
@@ -29,7 +30,7 @@ const Message = ({ message: { user, text }, name }) => {
         <div className="messageContainer justifyStart">
           <div className="messageBox backgroundLight">
             <span className="messageText colorDark">
-              {ReactEmoji.emojify(text)}
+              <Linkify>{ReactEmoji.emojify(text)}</Linkify>
             </span>
           </div>
           <span className="sentText pl-10">{user}</span>

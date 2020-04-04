@@ -50,11 +50,13 @@
   justify-content: flex-end;
 }
 
-.colorWhite {
+.colorWhite,
+.colorWhite a {
   color: white;
 }
 
-.colorDark {
+.colorDark,
+.colorDark a {
   color: #353535;
 }
 
