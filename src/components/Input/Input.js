@@ -2,7 +2,9 @@ import React from "react";
 
 import "./Input.css";
 
-const Input = ({ message, setMessage, sendMessage, handleKeyPress }) => {
+const Input = ({ message, setMessage, sendMessage, handleKeyDown }) => {
+  const mobile = window.innerWidth <= 600;
+
   return (
     <form action="" className="form">
       <input
@@ -10,10 +12,11 @@ const Input = ({ message, setMessage, sendMessage, handleKeyPress }) => {
         placeholder="Type a message.."
         className="input"
         value={message}
-        onChange={e => setMessage(e.target.value)}
-        onKeyPress={handleKeyPress}
+        onChange={(e) => setMessage(e.target.value)}
+        onKeyPress={!mobile ? handleKeyDown : () => {}}
+        onKeyDown={!mobile ? () => {} : handleKeyDown}
       />
-      <button className="sendButton" onClick={e => sendMessage(e)}>
+      <button className="sendButton" onClick={(e) => sendMessage(e)}>
         Send
       </button>
     </form>
