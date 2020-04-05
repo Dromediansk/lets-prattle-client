@@ -2,6 +2,7 @@
   background: #f3f3f3;
   border-radius: 20px;
   padding: 10px 20px;
+  margin: 10px 0;
   color: white;
   display: inline-block;
   max-width: 80%;
@@ -31,7 +32,7 @@
   align-items: center;
   font-family: Helvetica;
   color: #828282;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
 }
 
 .pl-10 {

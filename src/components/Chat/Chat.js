@@ -7,6 +7,8 @@ import Messages from "../Messages/Messages";
 import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
 
+import TypingIcon from "../../icons/edit.gif";
+
 import "./Chat.css";
 
 let socket;
@@ -52,7 +54,7 @@ const Chat = ({ location, history }) => {
 
   useEffect(() => {
     socket.on("notifyTyping", (data) => {
-      setNotifyTyping(`${data.user} ${data.message}`);
+      setNotifyTyping(`${data.user}`);
     });
     socket.on("notifyStopTyping", () => {
       setNotifyTyping("");
@@ -118,7 +120,10 @@ const Chat = ({ location, history }) => {
         <InfoBar room={room} />
         <Messages messages={messages} name={name} notifyTyping={notifyTyping} />
         {notifyTyping && (
-          <div className="typingNotification">{notifyTyping}</div>
+          <div className="typingNotification">
+            <span>{notifyTyping}</span>
+            <img src={TypingIcon} alt="typing" />
+          </div>
         )}
         <Input
           message={message}
