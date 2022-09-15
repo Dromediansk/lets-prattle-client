@@ -13,7 +13,7 @@ import TypingIcon from "../../icons/edit.gif";
 import "./Chat.css";
 import { USER_ALREADY_TAKEN } from "../../utils/errors";
 
-const endpoint = process.env.REACT_APP_SERVER_ENDPOINT;
+const endpoint = process.env.REACT_APP_SERVER_HOST;
 let socket;
 
 export const Chat = () => {
