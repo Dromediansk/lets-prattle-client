@@ -16,7 +16,10 @@ const Input = ({ message, setMessage, sendMessage, handleKeyDown }) => {
         onKeyPress={!mobile ? handleKeyDown : () => {}}
         onKeyDown={!mobile ? () => {} : handleKeyDown}
       />
-      <button className="sendButton" onClick={(e) => sendMessage(e)}>
+      <button
+        className="primary-button sendButton"
+        onClick={(e) => sendMessage(e)}
+      >
         Send
       </button>
     </form>

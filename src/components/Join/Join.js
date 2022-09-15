@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./Join.css";
 
-const Join = () => {
+export const Join = () => {
   const [credentials, setCredentials] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -60,5 +60,3 @@ const Join = () => {
     </div>
   );
 };
-
-export default Join;

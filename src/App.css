@@ -9,3 +9,13 @@ body {
 #root {
   height: 100%;
 }
+
+.primary-button {
+  color: #fff;
+  background: #2979ff;
+}
+
+.primary-button:hover {
+  cursor: pointer;
+  background-color: #5f99fd;
+}

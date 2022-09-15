@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
+import { useLocation } from "react-router-dom";
 
 import TextContainer from "../TextContainer/TextContainer";
 import Messages from "../Messages/Messages";
@@ -10,10 +11,14 @@ import Input from "../Input/Input";
 import TypingIcon from "../../icons/edit.gif";
 
 import "./Chat.css";
+import { USER_ALREADY_TAKEN } from "../../utils/errors";
 
+const endpoint = process.env.REACT_APP_SERVER_ENDPOINT;
 let socket;
 
-const Chat = ({ location, history }) => {
+export const Chat = () => {
+  const location = useLocation();
+
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [users, setUsers] = useState("");
@@ -24,23 +29,21 @@ const Chat = ({ location, history }) => {
   const [typing, setTyping] = useState(false);
   const [notifyTyping, setNotifyTyping] = useState("");
 
-  const endpoint = process.env.REACT_APP_SERVER_ENDPOINT;
-
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
     socket = io(endpoint);
+    socket.emit("join", { name, room }, (error) => {
+      if (error === USER_ALREADY_TAKEN) {
+        alert("Such user name already exists in this room!");
+        window.location.replace("/");
+        return;
+      }
+    });
 
     setRoom(room);
     setName(name);
-
-    socket.emit("join", { name, room }, (error) => {
-      if (error) {
-        alert(error);
-        history.push("/");
-      }
-    });
-  }, [history, endpoint, location.search]);
+  }, [endpoint, location.search]);
 
   useEffect(() => {
     socket.on("message", (message) => {
@@ -136,5 +139,3 @@ const Chat = ({ location, history }) => {
     </div>
   );
 };
-
-export default Chat;
