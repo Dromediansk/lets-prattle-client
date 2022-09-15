@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactEmoji from "react-emoji";
 import Linkify from "react-linkify";
 import { USER_BOT } from "../../../utils/variables";
 
 import "./Message.css";
 
+const botImage = <img className="botAvatar" src="./botAvatar.svg" alt="bot" />;
+
 const Message = ({ message: { user, text, time }, name }) => {
-  const [sentByCurrentUser, setSentByCurrentUser] = useState(false);
-
-  console.log("user", user);
-  console.log("name", name);
-
-  useEffect(() => {
-    if (user === name) {
-      setSentByCurrentUser(true);
-    }
-  }, [user, name]);
-
-  const botImage = (
-    <img className="botAvatar" src="./botAvatar.svg" alt="bot" />
-  );
+  const isCurrentUser = user === name;
 
   return (
     <>
-      {sentByCurrentUser ? (
+      {isCurrentUser ? (
         <div className="messageContainer justifyEnd">
           <span className="sentText pr-10">{name}</span>
           <span className="sentText pr-10 smallFont">{time}</span>
