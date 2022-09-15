@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from "react";
+import { USER_BOT } from "../../utils/variables";
+import { BotMessage } from "./Message/BotMessage";
 import Message from "./Message/Message";
 
 import "./Messages.css";
@@ -13,11 +15,17 @@ const Messages = ({ messages, name, notifyTyping }) => {
 
   return (
     <div className="messages">
-      {messages.map((msg, index) => (
-        <div key={index}>
-          <Message message={msg} name={name} />
-        </div>
-      ))}
+      {messages.map((message, index) => {
+        return (
+          <div key={index}>
+            {message.user === USER_BOT ? (
+              <BotMessage message={message} />
+            ) : (
+              <Message message={message} name={name} />
+            )}
+          </div>
+        );
+      })}
       <div ref={messagesEndRef} />
     </div>
   );

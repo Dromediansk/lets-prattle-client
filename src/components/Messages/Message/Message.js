@@ -1,14 +1,11 @@
 import React from "react";
 import ReactEmoji from "react-emoji";
 import Linkify from "react-linkify";
-import { USER_BOT } from "../../../utils/variables";
 
 import "./Message.css";
 
-const botImage = <img className="botAvatar" src="./botAvatar.svg" alt="bot" />;
-
 const Message = ({ message: { user, text, time }, name }) => {
-  const isCurrentUser = user === name;
+  const isCurrentUser = user.trim().toLowerCase() === name.trim().toLowerCase();
 
   return (
     <>
@@ -29,9 +26,7 @@ const Message = ({ message: { user, text, time }, name }) => {
               <Linkify>{ReactEmoji.emojify(text)}</Linkify>
             </span>
           </div>
-          <span className="sentText pl-10">
-            {user === USER_BOT ? botImage : user}
-          </span>
+          <span className="sentText pl-10">{user}</span>
           <span className="sentText pl-10 smallFont">{time}</span>
         </div>
       )}

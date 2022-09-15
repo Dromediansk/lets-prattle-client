@@ -90,30 +90,31 @@ export const Chat = () => {
     };
   };
 
-  const timeoutFunction = () => {
+  const stopTyping = () => {
     setTyping(false);
     socket.emit("stopTyping", { room }, "");
   };
 
   const handleKeyDownNotEnter = () => {
     clearTimeout(timeout);
-    timeout = setTimeout(timeoutFunction, 10000);
+    timeout = setTimeout(stopTyping, 3000);
   };
 
   const handleKeyDown = (event) => {
+    setTyping(true);
+
     if (event.key === "Enter") {
       sendMessage(event);
     } else if (event.key === "Backspace" || event.key === "Escape") {
       return;
     } else if (!typing) {
-      setTyping(true);
       throttle(
         socket.emit("typing", { name, room, message: "is typing..." }),
-        9000
+        3000
       );
-      timeout = setTimeout(timeoutFunction, 10000);
+      timeout = setTimeout(stopTyping, 3000);
     } else {
-      throttle(handleKeyDownNotEnter, 10000);
+      throttle(handleKeyDownNotEnter, 3000);
     }
   };
 
@@ -132,7 +133,7 @@ export const Chat = () => {
           message={message}
           setMessage={setMessage}
           sendMessage={sendMessage}
-          handleKeyDown={handleKeyDown}
+          onKeyDown={handleKeyDown}
         />
       </div>
       <TextContainer users={users} />
